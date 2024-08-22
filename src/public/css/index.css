@@ -1,0 +1,71 @@
+/* Reset margin and padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Set the background color and text color for the body */
+body {
+    font-family: Arial, sans-serif;
+    color: #fff;
+    background-color: #333;
+    text-align: center;
+    position: relative; /* Make sure body is positioned relative for absolute positioning */
+    height: 100vh; /* Full height for the body */
+    overflow: hidden; /* Hide overflow to keep design neat */
+}
+
+/* Style for the header */
+header {
+    position: relative;
+}
+
+.banner-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+/* Style for the heading with pixel effect */
+.title {
+    font-size: 4em; /* Adjust font size as needed */
+    color: red;
+    font-weight: bold;
+    text-shadow: 
+        1px 1px 0 #000,  
+        2px 2px 0 #000,  
+        3px 3px 0 #000,  
+        4px 4px 0 #000,  
+        5px 5px 0 #000,  
+        6px 6px 0 #000,  
+        7px 7px 0 #000,  
+        8px 8px 0 #000,  
+        9px 9px 0 #000,  
+        10px 10px 0 #000; /* Create a pixelated red shadow effect */
+}
+
+/* Style for the logout button */
+#logoutButton {
+    position: absolute;
+    top: 20px; /* Distance from the top edge */
+    right: 20px; /* Distance from the right edge */
+    padding: 10px 20px;
+    background-color: #007bff; /* Blue background color */
+    color: #fff; /* White text color */
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+#logoutButton:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+#logoutButton:active {
+    transform: scale(0.98); /* Slightly shrink the button on click */
+}
