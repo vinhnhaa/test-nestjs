@@ -11,6 +11,9 @@ export class User {
   @Column()
   last_name: string;
 
+  @Column({ type: 'int', default: 1 }) 
+  role: number;
+
   @Column()
   email: string;
 

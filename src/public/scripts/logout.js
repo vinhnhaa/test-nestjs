@@ -1,4 +1,24 @@
 document.addEventListener('DOMContentLoaded', function () {
+    const token = localStorage.getItem('token');
+    
+    if (token) {
+        fetch('/index', {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}` // Thêm tiền tố Bearer
+            }
+        }).then(response => {
+            if (!response.ok) {
+                window.location.href = '/login';
+            }
+        }).catch(error => {
+            console.error('Error:', error);
+            alert('Có lỗi xảy ra, vui lòng thử lại.');
+        });
+    } else {
+        window.location.href = '/login';
+    }
+
     const logoutButton = document.getElementById('logoutButton');
 
     if (logoutButton) {
@@ -22,15 +42,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 // Log phản hồi từ server
                 const responseText = await response.text();
-                console.log('Response:', responseText);
-
+          
                 if (response.ok) {
                     // Xóa token và email khỏi localStorage
                     localStorage.removeItem('token');
                     localStorage.removeItem('user_email');
                     
                     // Chuyển hướng về trang đăng nhập
-                    window.location.href = '/login';
+                    window.location.href = '/home';
                 } else {
                     // Log lỗi từ server
                     const errorData = await response.json();

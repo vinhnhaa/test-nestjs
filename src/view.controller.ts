@@ -1,7 +1,10 @@
-import { Controller, Get, Res } from '@nestjs/common';
+import { Controller, Get, Res, UseGuards } from '@nestjs/common';
 import { Response } from 'express';
 import { join } from 'path';
+import { AuthGuard } from './auth/auth.guard';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('View')
 @Controller()
 export class ViewController {
   @Get('/login')
@@ -14,9 +17,13 @@ export class ViewController {
     return res.sendFile(join(__dirname, '..', 'public', 'view', 'register.html'));
   }
 
-  @Get('/dashboard')
-  getDashboardPage(@Res() res: Response) {
+  @Get('/index')
+  getIndexPage(@Res() res: Response) {
     return res.sendFile(join(__dirname, '..', 'public', 'view', 'index.html'));
   }
   
+  @Get(['/', '/home'])
+  getHomePage(@Res() res: Response) {
+    return res.sendFile(join(__dirname, '..', 'public', 'view', 'home.html'));
+  }
 }

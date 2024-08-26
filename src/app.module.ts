@@ -8,6 +8,7 @@ import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
 import { dataSourceOptions } from 'db/data-source';
 import { ViewController } from './view.controller';
+import { AuthGuard } from './auth/auth.guard';
 
 
 @Module({
@@ -20,7 +21,7 @@ import { ViewController } from './view.controller';
     UserModule,
     AuthModule,
   ],
-  controllers: [AppController,   ViewController],
-  providers: [AppService],
+  controllers: [ViewController, AppController],
+  providers: [AppService, AuthGuard],
 })
 export class AppModule {}

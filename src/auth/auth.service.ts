@@ -20,19 +20,27 @@ export class AuthService {
         const existingUser = await this.userRepository.findOne({
             where: { email: registerUserDto.email }
         });
-        
+    
         if (existingUser) {
             throw new HttpException('Email đã tồn tại', HttpStatus.CONFLICT);
         }
-
+    
         const hashPassword = await this.hashPassword(registerUserDto.password);
-
-        // Log mật khẩu đã hash
-        console.log('Original Password:', registerUserDto.password);
-        console.log('Hashed Password:', hashPassword);
-
-        return await this.userRepository.save({ ...registerUserDto, refresh_token: "NULL", password: hashPassword });
+    
+        // Lấy ID lớn nhất hiện tại
+        const maxIdUser = await this.userRepository.createQueryBuilder('user')
+            .select('MAX(user.id)', 'max')
+            .getRawOne();
+        const newId = (maxIdUser.max || 0) + 1;
+    
+        return await this.userRepository.save({
+            id: newId, 
+            ...registerUserDto, 
+            refresh_token: "NULL", 
+            password: hashPassword
+        });
     }
+    
 
     async login(loginUserDto: LoginUserDto): Promise<any> {
         const user = await this.userRepository.findOne(
@@ -44,10 +52,8 @@ export class AuthService {
             throw new HttpException("Login failed! Email or Password is not correct.", HttpStatus.UNAUTHORIZED);
         }
 
-        // Log user và mật khẩu đã hash
         console.log('User:', user);
         console.log('Entered Password:', loginUserDto.password);
-        console.log('Hashed Password:', user.password);
 
         const checkPass = await bcrypt.compare(loginUserDto.password, user.password);
         if (!checkPass) {

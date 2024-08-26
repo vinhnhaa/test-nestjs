@@ -17,9 +17,6 @@ document.addEventListener('DOMContentLoaded', function () {
       const email = document.getElementById('email').value;
       const password = document.getElementById('password').value;
 
-      // Log thông tin đăng nhập
-      console.log('Login attempt:', { email, password });
-
       try {
         const response = await fetch('/auth/login', {
           method: 'POST',
@@ -29,18 +26,14 @@ document.addEventListener('DOMContentLoaded', function () {
           body: JSON.stringify({ email, password }),
         });
 
-        // Log phản hồi từ server
-        console.log('Response status:', response.status);
-
         if (response.ok) {
           const data = await response.json();
-          console.log('Login successful:', data);
 
           // Lưu token và email vào localStorage
-          localStorage.setItem('token', data.access_token);
+          localStorage.setItem('token', `Bearer ${data.access_token}`);
           localStorage.setItem('user_email', email); 
           
-          window.location.href = '/dashboard'; 
+          window.location.href = '/index'; 
         } else {
           const errorData = await response.json();
           console.log('Login failed:', errorData);
