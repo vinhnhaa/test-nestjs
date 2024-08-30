@@ -7,8 +7,8 @@
 
 /* Set the background color and text color for the body */
 body {
-    font-family: Arial, sans-serif;
-    color: #fff;
+    font-family: 'Arial', sans-serif;
+    color: black;
     background-color: #333;
     text-align: center;
     position: relative; /* Make sure body is positioned relative for absolute positioning */
@@ -50,10 +50,10 @@ header {
 #logoutButton {
     position: absolute;
     top: 20px; /* Distance from the top edge */
-    right: 20px; /* Distance from the right edge */
+    right: 20px; /* Adjust distance from the right edge */
     padding: 10px 20px;
     background-color: #007bff; /* Blue background color */
-    color: #fff; /* White text color */
+    color: white; /* White text color */
     border: none;
     border-radius: 5px;
     font-size: 16px;
@@ -68,4 +68,124 @@ header {
 
 #logoutButton:active {
     transform: scale(0.98); /* Slightly shrink the button on click */
+}
+
+/* Style for the appreciate button */
+#openModalButton {
+    position: absolute; /* Absolute positioning for precise control */
+    top: 20px; /* Align with logout button vertically */
+    right: 120px; /* Adjust distance from the right edge to position it next to logout button */
+    padding: 10px 20px;
+    background-color: #28a745; /* Green background color */
+    color: white; /* White text color */
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+#openModalButton:hover {
+    background-color: #218838; /* Darker green on hover */
+}
+
+#openModalButton:active {
+    transform: scale(0.98); /* Slightly shrink the button on click */
+}
+
+/* Updated Modal Styles */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 10;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.6); /* Darker background for more contrast */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 15px; /* More rounded corners */
+    border: none; /* Remove the border */
+    width: 90%;
+    max-width: 450px; /* Slightly smaller modal width */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Stronger shadow for depth */
+    text-align: center;
+}
+
+.close {
+    color: #888;
+    float: right;
+    font-size: 24px;
+    font-weight: normal;
+    transition: color 0.3s ease;
+}
+
+.close:hover,
+.close:focus {
+    color: #000; /* Change to black on hover */
+    cursor: pointer;
+}
+
+h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333; /* Darker color for header text */
+}
+
+.rating {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    gap: 10px;
+}
+
+.rating label {
+    font-weight: bold;
+    color: #555; /* Subtle color for label */
+}
+
+.rating input[type="range"] {
+    width: 100%;
+    margin: 0 10px;
+}
+
+textarea {
+    width: 100%; /* Full width for consistency */
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px; /* Rounded corners */
+    font-size: 16px;
+    font-family: 'Arial', sans-serif;
+    resize: vertical; /* Allow vertical resize only */
+    margin-bottom: 20px;
+}
+
+button[type="submit"] {
+    width: 100%;
+    padding: 12px 0;
+    background-color: #007bff; /* Consistent blue color */
+    color: white;
+    border: none;
+    border-radius: 8px; /* Rounded corners */
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+button[type="submit"]:active {
+    transform: scale(0.98);
 }

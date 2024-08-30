@@ -9,6 +9,7 @@ import { AuthModule } from './auth/auth.module';
 import { dataSourceOptions } from 'db/data-source';
 import { ViewController } from './view.controller';
 import { AuthGuard } from './auth/auth.guard';
+import { AppreciationModule } from './appreciation/appreciation.module';
 
 
 @Module({
@@ -20,6 +21,7 @@ import { AuthGuard } from './auth/auth.guard';
     TypeOrmModule.forRoot(dataSourceOptions),
     UserModule,
     AuthModule,
+    AppreciationModule,
   ],
   controllers: [ViewController, AppController],
   providers: [AppService, AuthGuard],
